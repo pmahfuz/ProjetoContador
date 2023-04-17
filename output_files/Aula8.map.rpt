@@ -1,0 +1,1382 @@
+Analysis & Synthesis report for Aula8
+Mon Apr 17 17:33:03 2023
+Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Parameter Settings for User Entity Instance: Top-level Entity: |Aula8
+ 12. Parameter Settings for User Entity Instance: memoriaROM:ROM1
+ 13. Parameter Settings for User Entity Instance: memoriaRAM:RAM1
+ 14. Parameter Settings for User Entity Instance: registradorGenerico:REG8
+ 15. Parameter Settings for User Entity Instance: CPU:CPU
+ 16. Parameter Settings for User Entity Instance: CPU:CPU|muxGenerico2x1:MUX1
+ 17. Parameter Settings for User Entity Instance: CPU:CPU|muxGenerico4x1:MUX2
+ 18. Parameter Settings for User Entity Instance: CPU:CPU|registradorGenerico:REGA
+ 19. Parameter Settings for User Entity Instance: CPU:CPU|registradorGenerico:ENDERECORET
+ 20. Parameter Settings for User Entity Instance: CPU:CPU|registradorGenerico:PC
+ 21. Parameter Settings for User Entity Instance: CPU:CPU|somaConstante:incrementaPC
+ 22. Parameter Settings for User Entity Instance: CPU:CPU|ULASomaSub:ULA1
+ 23. Parameter Settings for User Entity Instance: registradorGenerico:REG0
+ 24. Parameter Settings for User Entity Instance: registradorGenerico:REG1
+ 25. Parameter Settings for User Entity Instance: registradorGenerico:REG2
+ 26. Parameter Settings for User Entity Instance: registradorGenerico:REG3
+ 27. Parameter Settings for User Entity Instance: registradorGenerico:REG4
+ 28. Parameter Settings for User Entity Instance: registradorGenerico:REG5
+ 29. Port Connectivity Checks: "conversorHex7Seg:CHEX5"
+ 30. Port Connectivity Checks: "conversorHex7Seg:CHEX4"
+ 31. Port Connectivity Checks: "conversorHex7Seg:CHEX3"
+ 32. Port Connectivity Checks: "conversorHex7Seg:CHEX2"
+ 33. Port Connectivity Checks: "conversorHex7Seg:CHEX1"
+ 34. Port Connectivity Checks: "conversorHex7Seg:CHEX0"
+ 35. Port Connectivity Checks: "registradorGenerico:REG5"
+ 36. Port Connectivity Checks: "registradorGenerico:REG4"
+ 37. Port Connectivity Checks: "registradorGenerico:REG3"
+ 38. Port Connectivity Checks: "registradorGenerico:REG2"
+ 39. Port Connectivity Checks: "registradorGenerico:REG1"
+ 40. Port Connectivity Checks: "registradorGenerico:REG0"
+ 41. Port Connectivity Checks: "CPU:CPU|flipflop:FLAGZ1"
+ 42. Port Connectivity Checks: "CPU:CPU|registradorGenerico:PC"
+ 43. Port Connectivity Checks: "CPU:CPU|registradorGenerico:ENDERECORET"
+ 44. Port Connectivity Checks: "CPU:CPU|registradorGenerico:REGA"
+ 45. Port Connectivity Checks: "CPU:CPU|muxGenerico4x1:MUX2"
+ 46. Port Connectivity Checks: "registradorGenerico:REG8"
+ 47. Port Connectivity Checks: "flipflop:FF2"
+ 48. Port Connectivity Checks: "flipflop:FF1"
+ 49. Port Connectivity Checks: "decoder3x8:DECODER3x82"
+ 50. Port Connectivity Checks: "decoder3x8:DECODER3x8"
+ 51. Post-Synthesis Netlist Statistics for Top Partition
+ 52. Elapsed Time Per Partition
+ 53. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Mon Apr 17 17:33:03 2023       ;
+; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
+; Revision Name                   ; Aula8                                       ;
+; Top-level Entity Name           ; Aula8                                       ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 70                                          ;
+; Total pins                      ; 67                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CEBA4F23C7        ;                    ;
+; Top-level entity name                                                           ; Aula8              ; Aula8              ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Maximum processors allowed for parallel compilation                             ; All                ;                    ;
+; VHDL Show LMF Mapping Messages                                                  ; Off                ;                    ;
+; VHDL Version                                                                    ; VHDL_2008          ; VHDL_1993          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                             ;
++----------------------------------+-----------------+-----------------------+-----------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type             ; File Name with Absolute Path                                                ; Library ;
++----------------------------------+-----------------+-----------------------+-----------------------------------------------------------------------------+---------+
+; ULASomaSub.vhd                   ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/ULASomaSub.vhd          ;         ;
+; somaConstante.vhd                ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/somaConstante.vhd       ;         ;
+; registradorGenerico.vhd          ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/registradorGenerico.vhd ;         ;
+; muxGenerico4x1.vhd               ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/muxGenerico4x1.vhd      ;         ;
+; muxGenerico2x1.vhd               ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/muxGenerico2x1.vhd      ;         ;
+; memoriaROM.vhd                   ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaROM.vhd          ;         ;
+; memoriaRAM.vhd                   ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd          ;         ;
+; LogicaDesvio.vhd                 ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/LogicaDesvio.vhd        ;         ;
+; flipflop.vhd                     ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/flipflop.vhd            ;         ;
+; edgeDetector.vhd                 ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/edgeDetector.vhd        ;         ;
+; decoderInstru.vhd                ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/decoderInstru.vhd       ;         ;
+; decoder3x8.vhd                   ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/decoder3x8.vhd          ;         ;
+; CPU.vhd                          ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/CPU.vhd                 ;         ;
+; conversorHex7Seg.vhd             ; yes             ; User VHDL File        ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/conversorHex7Seg.vhd    ;         ;
+; aula8.vhd                        ; yes             ; Auto-Found VHDL File  ; C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd               ;         ;
++----------------------------------+-----------------+-----------------------+-----------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                           ;
++---------------------------------------------+-----------------------------------------+
+; Resource                                    ; Usage                                   ;
++---------------------------------------------+-----------------------------------------+
+; Estimate of Logic utilization (ALMs needed) ; 75                                      ;
+;                                             ;                                         ;
+; Combinational ALUT usage for logic          ; 119                                     ;
+;     -- 7 input functions                    ; 0                                       ;
+;     -- 6 input functions                    ; 17                                      ;
+;     -- 5 input functions                    ; 16                                      ;
+;     -- 4 input functions                    ; 66                                      ;
+;     -- <=3 input functions                  ; 20                                      ;
+;                                             ;                                         ;
+; Dedicated logic registers                   ; 70                                      ;
+;                                             ;                                         ;
+; I/O pins                                    ; 67                                      ;
+;                                             ;                                         ;
+; Total DSP Blocks                            ; 0                                       ;
+;                                             ;                                         ;
+; Maximum fan-out node                        ; edgeDetector:\gravar:detectorSub0|saida ;
+; Maximum fan-out                             ; 69                                      ;
+; Total fan-out                               ; 821                                     ;
+; Average fan-out                             ; 2.54                                    ;
++---------------------------------------------+-----------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                              ;
++----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------+---------------------+--------------+
+; Compilation Hierarchy Node             ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                       ; Entity Name         ; Library Name ;
++----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------+---------------------+--------------+
+; |Aula8                                 ; 119 (1)             ; 70 (0)                    ; 0                 ; 0          ; 67   ; 0            ; |Aula8                                    ; Aula8               ; work         ;
+;    |CPU:CPU|                           ; 23 (0)              ; 13 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |Aula8|CPU:CPU                            ; CPU                 ; work         ;
+;       |ULASomaSub:ULA1|                ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|CPU:CPU|ULASomaSub:ULA1            ; ULASomaSub          ; work         ;
+;       |decoderInstru:DECODER|          ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|CPU:CPU|decoderInstru:DECODER      ; decoderInstru       ; work         ;
+;       |muxGenerico2x1:MUX1|            ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|CPU:CPU|muxGenerico2x1:MUX1        ; muxGenerico2x1      ; work         ;
+;       |registradorGenerico:PC|         ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|CPU:CPU|registradorGenerico:PC     ; registradorGenerico ; work         ;
+;       |registradorGenerico:REGA|       ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|CPU:CPU|registradorGenerico:REGA   ; registradorGenerico ; work         ;
+;       |somaConstante:incrementaPC|     ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|CPU:CPU|somaConstante:incrementaPC ; somaConstante       ; work         ;
+;    |conversorHex7Seg:CHEX0|            ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|conversorHex7Seg:CHEX0             ; conversorHex7Seg    ; work         ;
+;    |conversorHex7Seg:CHEX1|            ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|conversorHex7Seg:CHEX1             ; conversorHex7Seg    ; work         ;
+;    |conversorHex7Seg:CHEX2|            ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|conversorHex7Seg:CHEX2             ; conversorHex7Seg    ; work         ;
+;    |conversorHex7Seg:CHEX3|            ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|conversorHex7Seg:CHEX3             ; conversorHex7Seg    ; work         ;
+;    |conversorHex7Seg:CHEX4|            ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|conversorHex7Seg:CHEX4             ; conversorHex7Seg    ; work         ;
+;    |conversorHex7Seg:CHEX5|            ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|conversorHex7Seg:CHEX5             ; conversorHex7Seg    ; work         ;
+;    |decoder3x8:DECODER3x82|            ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|decoder3x8:DECODER3x82             ; decoder3x8          ; work         ;
+;    |edgeDetector:\gravar:detectorSub0| ; 2 (2)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|edgeDetector:\gravar:detectorSub0  ; edgeDetector        ; work         ;
+;    |memoriaRAM:RAM1|                   ; 29 (29)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |Aula8|memoriaRAM:RAM1                    ; memoriaRAM          ; work         ;
+;    |memoriaROM:ROM1|                   ; 15 (15)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|memoriaROM:ROM1                    ; memoriaROM          ; work         ;
+;    |registradorGenerico:REG0|          ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|registradorGenerico:REG0           ; registradorGenerico ; work         ;
+;    |registradorGenerico:REG1|          ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|registradorGenerico:REG1           ; registradorGenerico ; work         ;
+;    |registradorGenerico:REG2|          ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|registradorGenerico:REG2           ; registradorGenerico ; work         ;
+;    |registradorGenerico:REG3|          ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|registradorGenerico:REG3           ; registradorGenerico ; work         ;
+;    |registradorGenerico:REG4|          ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|registradorGenerico:REG4           ; registradorGenerico ; work         ;
+;    |registradorGenerico:REG5|          ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Aula8|registradorGenerico:REG5           ; registradorGenerico ; work         ;
++----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------+---------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                               ;
++----------------------------------------------------+---------------------------------------------+
+; Register name                                      ; Reason for Removal                          ;
++----------------------------------------------------+---------------------------------------------+
+; CPU:CPU|registradorGenerico:ENDERECORET|DOUT[0]    ; Stuck at GND due to stuck port clock_enable ;
+; CPU:CPU|flipflop:FLAGZ1|DOUT                       ; Stuck at GND due to stuck port clock_enable ;
+; CPU:CPU|registradorGenerico:ENDERECORET|DOUT[1..8] ; Stuck at GND due to stuck port clock_enable ;
+; registradorGenerico:REG8|DOUT[0..7]                ; Stuck at GND due to stuck port clock_enable ;
+; flipflop:FF2|DOUT                                  ; Stuck at GND due to stuck port clock_enable ;
+; flipflop:FF1|DOUT                                  ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~81                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~82                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~83                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~84                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~85                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~86                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~87                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~88                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~89                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~90                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~91                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~92                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~93                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~94                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~95                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~96                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~97                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~98                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~99                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~100                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~101                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~102                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~103                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~104                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~105                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~106                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~107                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~108                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~109                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~110                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~111                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~112                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~113                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~114                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~115                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~116                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~117                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~118                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~119                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~120                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~121                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~122                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~123                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~124                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~125                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~126                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~127                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~128                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~129                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~130                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~131                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~132                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~133                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~134                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~135                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~136                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~137                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~138                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~139                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~140                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~141                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~142                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~143                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~144                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~145                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~146                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~147                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~148                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~149                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~150                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~151                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~152                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~153                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~154                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~155                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~156                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~157                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~158                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~159                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~160                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~161                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~162                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~163                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~164                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~165                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~166                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~167                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~168                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~169                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~170                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~171                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~172                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~173                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~174                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~175                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~176                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~177                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~178                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~179                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~180                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~181                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~182                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~183                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~184                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~185                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~186                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~187                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~188                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~189                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~190                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~191                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~192                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~193                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~194                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~195                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~196                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~197                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~198                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~199                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~200                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~201                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~202                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~203                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~204                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~205                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~206                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~207                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~208                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~209                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~210                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~211                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~212                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~213                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~214                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~215                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~216                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~217                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~218                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~219                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~220                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~221                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~222                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~223                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~224                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~225                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~226                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~227                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~228                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~229                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~230                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~231                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~232                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~233                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~234                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~235                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~236                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~237                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~238                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~239                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~240                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~241                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~242                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~243                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~244                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~245                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~246                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~247                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~248                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~249                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~250                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~251                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~252                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~253                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~254                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~255                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~256                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~257                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~258                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~259                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~260                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~261                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~262                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~263                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~264                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~265                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~266                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~267                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~268                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~269                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~270                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~271                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~272                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~337                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~338                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~339                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~340                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~341                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~342                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~343                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~344                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~345                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~346                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~347                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~348                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~349                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~350                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~351                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~352                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~353                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~354                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~355                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~356                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~357                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~358                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~359                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~360                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~361                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~362                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~363                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~364                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~365                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~366                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~367                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~368                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~369                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~370                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~371                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~372                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~373                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~374                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~375                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~376                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~377                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~378                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~379                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~380                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~381                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~382                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~383                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~384                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~385                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~386                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~387                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~388                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~389                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~390                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~391                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~392                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~393                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~394                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~395                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~396                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~397                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~398                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~399                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~400                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~401                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~402                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~403                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~404                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~405                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~406                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~407                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~408                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~409                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~410                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~411                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~412                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~413                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~414                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~415                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~416                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~417                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~418                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~419                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~420                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~421                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~422                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~423                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~424                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~425                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~426                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~427                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~428                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~429                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~430                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~431                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~432                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~433                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~434                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~435                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~436                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~437                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~438                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~439                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~440                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~441                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~442                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~443                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~444                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~445                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~446                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~447                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~448                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~449                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~450                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~451                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~452                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~453                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~454                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~455                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~456                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~457                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~458                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~459                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~460                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~461                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~462                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~463                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~464                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~465                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~466                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~467                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~468                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~469                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~470                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~471                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~472                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~473                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~474                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~475                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~476                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~477                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~478                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~479                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~480                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~481                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~482                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~483                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~484                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~485                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~486                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~487                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~488                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~489                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~490                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~491                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~492                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~493                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~494                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~495                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~496                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~497                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~498                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~499                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~500                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~501                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~502                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~503                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~504                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~505                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~506                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~507                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~508                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~509                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~510                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~511                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~512                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~513                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~514                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~515                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~516                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~517                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~518                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~519                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~520                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~521                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~522                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~523                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~524                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~525                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~526                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~527                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~528                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~21                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~29                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~37                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~45                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~53                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~61                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~69                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~77                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~277                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~285                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~293                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~301                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~309                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~317                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~325                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~333                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~22                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~30                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~38                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~46                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~54                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~62                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~70                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~78                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~278                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~286                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~294                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~302                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~310                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~318                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~326                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~334                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~23                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~31                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~39                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~47                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~55                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~63                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~71                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~79                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~279                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~287                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~295                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~303                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~311                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~319                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~327                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~335                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~24                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~32                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~40                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~48                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~56                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~64                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~72                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~80                             ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~280                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~288                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~296                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~304                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~312                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~320                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~328                            ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~336                            ; Lost fanout                                 ;
+; CPU:CPU|registradorGenerico:REGA|DOUT[4..7]        ; Lost fanout                                 ;
+; memoriaRAM:RAM1|ram~281                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~297                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~313                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~329                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~273                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~289                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~305                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~321                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~284                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~276                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~316                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~308                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~300                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~292                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~332                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~324                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~282                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~274                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~314                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~306                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~298                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~290                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~330                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~322                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~283                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~299                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~315                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~331                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~275                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~291                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~307                            ; Stuck at GND due to stuck port clock_enable ;
+; memoriaRAM:RAM1|ram~323                            ; Stuck at GND due to stuck port clock_enable ;
+; Total Number of Removed Registers = 504            ;                                             ;
++----------------------------------------------------+---------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                            ;
++----------------------------------+--------------------------------+------------------------------------------------------------------------------------+
+; Register name                    ; Reason for Removal             ; Registers Removed due to This Register                                             ;
++----------------------------------+--------------------------------+------------------------------------------------------------------------------------+
+; CPU:CPU|flipflop:FLAGZ1|DOUT     ; Stuck at GND                   ; CPU:CPU|registradorGenerico:REGA|DOUT[4], CPU:CPU|registradorGenerico:REGA|DOUT[5] ;
+;                                  ; due to stuck port clock_enable ;                                                                                    ;
+; registradorGenerico:REG8|DOUT[6] ; Stuck at GND                   ; CPU:CPU|registradorGenerico:REGA|DOUT[6]                                           ;
+;                                  ; due to stuck port clock_enable ;                                                                                    ;
+; registradorGenerico:REG8|DOUT[7] ; Stuck at GND                   ; CPU:CPU|registradorGenerico:REGA|DOUT[7]                                           ;
+;                                  ; due to stuck port clock_enable ;                                                                                    ;
++----------------------------------+--------------------------------+------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 70    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 13    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 60    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |Aula8 ;
++------------------+-------+--------------------------------------------+
+; Parameter Name   ; Value ; Type                                       ;
++------------------+-------+--------------------------------------------+
+; larguraDados     ; 8     ; Signed Integer                             ;
+; larguraEnderecos ; 3     ; Signed Integer                             ;
+; simulacao        ; false ; Enumerated                                 ;
++------------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: memoriaROM:ROM1 ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; datawidth      ; 13    ; Signed Integer                      ;
+; addrwidth      ; 9     ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: memoriaRAM:RAM1 ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; datawidth      ; 8     ; Signed Integer                      ;
+; addrwidth      ; 8     ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: registradorGenerico:REG8 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; larguradados   ; 8     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU:CPU ;
++------------------+-------+---------------------------+
+; Parameter Name   ; Value ; Type                      ;
++------------------+-------+---------------------------+
+; larguradados     ; 8     ; Signed Integer            ;
+; larguraenderecos ; 3     ; Signed Integer            ;
+; simulacao        ; true  ; Enumerated                ;
++------------------+-------+---------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU:CPU|muxGenerico2x1:MUX1 ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; larguradados   ; 8     ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU:CPU|muxGenerico4x1:MUX2 ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; larguradados   ; 9     ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU:CPU|registradorGenerico:REGA ;
++----------------+-------+------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                 ;
++----------------+-------+------------------------------------------------------+
+; larguradados   ; 8     ; Signed Integer                                       ;
++----------------+-------+------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU:CPU|registradorGenerico:ENDERECORET ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; larguradados   ; 9     ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU:CPU|registradorGenerico:PC ;
++----------------+-------+----------------------------------------------------+
+; Parameter Name ; Value ; Type                                               ;
++----------------+-------+----------------------------------------------------+
+; larguradados   ; 9     ; Signed Integer                                     ;
++----------------+-------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU:CPU|somaConstante:incrementaPC ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; larguradados   ; 9     ; Signed Integer                                         ;
+; constante      ; 1     ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU:CPU|ULASomaSub:ULA1 ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; larguradados   ; 8     ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: registradorGenerico:REG0 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; larguradados   ; 4     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: registradorGenerico:REG1 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; larguradados   ; 4     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: registradorGenerico:REG2 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; larguradados   ; 4     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: registradorGenerico:REG3 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; larguradados   ; 4     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: registradorGenerico:REG4 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; larguradados   ; 4     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: registradorGenerico:REG5 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; larguradados   ; 4     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "conversorHex7Seg:CHEX5" ;
++----------+-------+----------+----------------------+
+; Port     ; Type  ; Severity ; Details              ;
++----------+-------+----------+----------------------+
+; apaga    ; Input ; Info     ; Stuck at GND         ;
+; negativo ; Input ; Info     ; Stuck at GND         ;
+; overflow ; Input ; Info     ; Stuck at GND         ;
++----------+-------+----------+----------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "conversorHex7Seg:CHEX4" ;
++----------+-------+----------+----------------------+
+; Port     ; Type  ; Severity ; Details              ;
++----------+-------+----------+----------------------+
+; apaga    ; Input ; Info     ; Stuck at GND         ;
+; negativo ; Input ; Info     ; Stuck at GND         ;
+; overflow ; Input ; Info     ; Stuck at GND         ;
++----------+-------+----------+----------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "conversorHex7Seg:CHEX3" ;
++----------+-------+----------+----------------------+
+; Port     ; Type  ; Severity ; Details              ;
++----------+-------+----------+----------------------+
+; apaga    ; Input ; Info     ; Stuck at GND         ;
+; negativo ; Input ; Info     ; Stuck at GND         ;
+; overflow ; Input ; Info     ; Stuck at GND         ;
++----------+-------+----------+----------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "conversorHex7Seg:CHEX2" ;
++----------+-------+----------+----------------------+
+; Port     ; Type  ; Severity ; Details              ;
++----------+-------+----------+----------------------+
+; apaga    ; Input ; Info     ; Stuck at GND         ;
+; negativo ; Input ; Info     ; Stuck at GND         ;
+; overflow ; Input ; Info     ; Stuck at GND         ;
++----------+-------+----------+----------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "conversorHex7Seg:CHEX1" ;
++----------+-------+----------+----------------------+
+; Port     ; Type  ; Severity ; Details              ;
++----------+-------+----------+----------------------+
+; apaga    ; Input ; Info     ; Stuck at GND         ;
+; negativo ; Input ; Info     ; Stuck at GND         ;
+; overflow ; Input ; Info     ; Stuck at GND         ;
++----------+-------+----------+----------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "conversorHex7Seg:CHEX0" ;
++----------+-------+----------+----------------------+
+; Port     ; Type  ; Severity ; Details              ;
++----------+-------+----------+----------------------+
+; apaga    ; Input ; Info     ; Stuck at GND         ;
+; negativo ; Input ; Info     ; Stuck at GND         ;
+; overflow ; Input ; Info     ; Stuck at GND         ;
++----------+-------+----------+----------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "registradorGenerico:REG5" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; rst  ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "registradorGenerico:REG4" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; rst  ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "registradorGenerico:REG3" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; rst  ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "registradorGenerico:REG2" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; rst  ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "registradorGenerico:REG1" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; rst  ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "registradorGenerico:REG0" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; rst  ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++-----------------------------------------------------+
+; Port Connectivity Checks: "CPU:CPU|flipflop:FLAGZ1" ;
++------+-------+----------+---------------------------+
+; Port ; Type  ; Severity ; Details                   ;
++------+-------+----------+---------------------------+
+; rst  ; Input ; Info     ; Stuck at GND              ;
++------+-------+----------+---------------------------+
+
+
++------------------------------------------------------------+
+; Port Connectivity Checks: "CPU:CPU|registradorGenerico:PC" ;
++--------+-------+----------+--------------------------------+
+; Port   ; Type  ; Severity ; Details                        ;
++--------+-------+----------+--------------------------------+
+; enable ; Input ; Info     ; Stuck at VCC                   ;
+; rst    ; Input ; Info     ; Stuck at GND                   ;
++--------+-------+----------+--------------------------------+
+
+
++---------------------------------------------------------------------+
+; Port Connectivity Checks: "CPU:CPU|registradorGenerico:ENDERECORET" ;
++------+-------+----------+-------------------------------------------+
+; Port ; Type  ; Severity ; Details                                   ;
++------+-------+----------+-------------------------------------------+
+; rst  ; Input ; Info     ; Stuck at GND                              ;
++------+-------+----------+-------------------------------------------+
+
+
++--------------------------------------------------------------+
+; Port Connectivity Checks: "CPU:CPU|registradorGenerico:REGA" ;
++------+-------+----------+------------------------------------+
+; Port ; Type  ; Severity ; Details                            ;
++------+-------+----------+------------------------------------+
+; rst  ; Input ; Info     ; Stuck at GND                       ;
++------+-------+----------+------------------------------------+
+
+
++---------------------------------------------------------+
+; Port Connectivity Checks: "CPU:CPU|muxGenerico4x1:MUX2" ;
++--------------+-------+----------+-----------------------+
+; Port         ; Type  ; Severity ; Details               ;
++--------------+-------+----------+-----------------------+
+; entrada3_mux ; Input ; Info     ; Stuck at GND          ;
++--------------+-------+----------+-----------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "registradorGenerico:REG8" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; rst  ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "flipflop:FF2" ;
++------+-------+----------+----------------+
+; Port ; Type  ; Severity ; Details        ;
++------+-------+----------+----------------+
+; rst  ; Input ; Info     ; Stuck at GND   ;
++------+-------+----------+----------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "flipflop:FF1" ;
++------+-------+----------+----------------+
+; Port ; Type  ; Severity ; Details        ;
++------+-------+----------+----------------+
+; rst  ; Input ; Info     ; Stuck at GND   ;
++------+-------+----------+----------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "decoder3x8:DECODER3x82"                                                                    ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; saida[7..6] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "decoder3x8:DECODER3x8"                                                                     ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; saida[7..5] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; saida[3..1] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 70                          ;
+;     ENA               ; 56                          ;
+;     ENA SLD           ; 4                           ;
+;     SLD               ; 9                           ;
+;     plain             ; 1                           ;
+; arriav_lcell_comb     ; 119                         ;
+;     arith             ; 14                          ;
+;         1 data inputs ; 10                          ;
+;         4 data inputs ; 1                           ;
+;         5 data inputs ; 3                           ;
+;     normal            ; 105                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 2                           ;
+;         4 data inputs ; 65                          ;
+;         5 data inputs ; 13                          ;
+;         6 data inputs ; 17                          ;
+; boundary_port         ; 67                          ;
+;                       ;                             ;
+; Max LUT depth         ; 5.20                        ;
+; Average LUT depth     ; 2.56                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Processing started: Mon Apr 17 17:32:55 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Aula8 -c Aula8
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file ulasomasub.vhd
+    Info (12022): Found design unit 1: ULASomaSub-comportamento File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/ULASomaSub.vhd Line: 15
+    Info (12023): Found entity 1: ULASomaSub File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/ULASomaSub.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file somaconstante.vhd
+    Info (12022): Found design unit 1: somaConstante-comportamento File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/somaConstante.vhd Line: 18
+    Info (12023): Found entity 1: somaConstante File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/somaConstante.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file registradorgenerico.vhd
+    Info (12022): Found design unit 1: registradorGenerico-comportamento File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/registradorGenerico.vhd Line: 15
+    Info (12023): Found entity 1: registradorGenerico File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/registradorGenerico.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file muxgenerico4x1.vhd
+    Info (12022): Found design unit 1: muxGenerico4x1-comportamento File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/muxGenerico4x1.vhd Line: 14
+    Info (12023): Found entity 1: muxGenerico4x1 File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/muxGenerico4x1.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file muxgenerico2x1.vhd
+    Info (12022): Found design unit 1: muxGenerico2x1-comportamento File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/muxGenerico2x1.vhd Line: 14
+    Info (12023): Found entity 1: muxGenerico2x1 File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/muxGenerico2x1.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file memoriarom.vhd
+    Info (12022): Found design unit 1: memoriaROM-assincrona File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaROM.vhd Line: 16
+    Info (12023): Found entity 1: memoriaROM File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaROM.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file memoriaram.vhd
+    Info (12022): Found design unit 1: memoriaRAM-rtl File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 21
+    Info (12023): Found entity 1: memoriaRAM File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file logicadesvio.vhd
+    Info (12022): Found design unit 1: LogicaDesvio-comportamento File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/LogicaDesvio.vhd Line: 14
+    Info (12023): Found entity 1: LogicaDesvio File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/LogicaDesvio.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file flipflop.vhd
+    Info (12022): Found design unit 1: flipflop-comportamento File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/flipflop.vhd Line: 12
+    Info (12023): Found entity 1: flipflop File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/flipflop.vhd Line: 4
+Info (12021): Found 3 design units, including 1 entities, in source file edgedetector.vhd
+    Info (12022): Found design unit 1: edgeDetector-bordaSubida File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/edgeDetector.vhd Line: 10
+    Info (12022): Found design unit 2: edgeDetector-bordaDescida File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/edgeDetector.vhd Line: 23
+    Info (12023): Found entity 1: edgeDetector File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/edgeDetector.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file decoderinstru.vhd
+    Info (12022): Found design unit 1: decoderInstru-comportamento File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/decoderInstru.vhd Line: 10
+    Info (12023): Found entity 1: decoderInstru File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/decoderInstru.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file decoder3x8.vhd
+    Info (12022): Found design unit 1: decoder3x8-comportamento File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/decoder3x8.vhd Line: 10
+    Info (12023): Found entity 1: decoder3x8 File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/decoder3x8.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file cpu.vhd
+    Info (12022): Found design unit 1: CPU-arquitetura File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/CPU.vhd Line: 26
+    Info (12023): Found entity 1: CPU File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/CPU.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file conversorhex7seg.vhd
+    Info (12022): Found design unit 1: conversorHex7Seg-comportamento File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/conversorHex7Seg.vhd Line: 17
+    Info (12023): Found entity 1: conversorHex7Seg File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/conversorHex7Seg.vhd Line: 4
+Warning (12125): Using design file aula8.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: Aula8-arquitetura File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 21
+    Info (12023): Found entity 1: Aula8 File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 4
+Info (12127): Elaborating entity "Aula8" for the top level hierarchy
+Info (12129): Elaborating entity "edgeDetector" using architecture "A:bordasubida" for hierarchy "edgeDetector:\gravar:detectorSub0" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 52
+Info (12128): Elaborating entity "memoriaROM" for hierarchy "memoriaROM:ROM1" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 56
+Info (12128): Elaborating entity "decoder3x8" for hierarchy "decoder3x8:DECODER3x8" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 59
+Info (12128): Elaborating entity "memoriaRAM" for hierarchy "memoriaRAM:RAM1" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 65
+Info (12128): Elaborating entity "flipflop" for hierarchy "flipflop:FF1" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 72
+Info (12128): Elaborating entity "registradorGenerico" for hierarchy "registradorGenerico:REG8" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 78
+Info (12128): Elaborating entity "CPU" for hierarchy "CPU:CPU" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 81
+Info (12128): Elaborating entity "muxGenerico2x1" for hierarchy "CPU:CPU|muxGenerico2x1:MUX1" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/CPU.vhd Line: 66
+Info (12128): Elaborating entity "muxGenerico4x1" for hierarchy "CPU:CPU|muxGenerico4x1:MUX2" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/CPU.vhd Line: 72
+Info (12128): Elaborating entity "registradorGenerico" for hierarchy "CPU:CPU|registradorGenerico:ENDERECORET" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/CPU.vhd Line: 84
+Info (12128): Elaborating entity "somaConstante" for hierarchy "CPU:CPU|somaConstante:incrementaPC" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/CPU.vhd Line: 91
+Info (12128): Elaborating entity "ULASomaSub" for hierarchy "CPU:CPU|ULASomaSub:ULA1" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/CPU.vhd Line: 96
+Info (12128): Elaborating entity "decoderInstru" for hierarchy "CPU:CPU|decoderInstru:DECODER" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/CPU.vhd Line: 99
+Info (12128): Elaborating entity "LogicaDesvio" for hierarchy "CPU:CPU|LogicaDesvio:LD" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/CPU.vhd Line: 102
+Info (12128): Elaborating entity "registradorGenerico" for hierarchy "registradorGenerico:REG0" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 85
+Info (12128): Elaborating entity "conversorHex7Seg" for hierarchy "conversorHex7Seg:CHEX0" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 103
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276007): RAM logic "memoriaRAM:RAM1|ram" is uninferred due to asynchronous read logic File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 27
+Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
+    Warning (13049): Converted tri-state buffer "memoriaRAM:RAM1|dado_out[0]" feeding internal logic into a wire File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 17
+    Warning (13049): Converted tri-state buffer "memoriaRAM:RAM1|dado_out[1]" feeding internal logic into a wire File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 17
+    Warning (13049): Converted tri-state buffer "memoriaRAM:RAM1|dado_out[2]" feeding internal logic into a wire File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 17
+    Warning (13049): Converted tri-state buffer "memoriaRAM:RAM1|dado_out[3]" feeding internal logic into a wire File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 17
+    Warning (13049): Converted tri-state buffer "memoriaRAM:RAM1|dado_out[4]" feeding internal logic into a wire File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 17
+    Warning (13049): Converted tri-state buffer "memoriaRAM:RAM1|dado_out[5]" feeding internal logic into a wire File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 17
+    Warning (13049): Converted tri-state buffer "memoriaRAM:RAM1|dado_out[6]" feeding internal logic into a wire File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 17
+    Warning (13049): Converted tri-state buffer "memoriaRAM:RAM1|dado_out[7]" feeding internal logic into a wire File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/memoriaRAM.vhd Line: 17
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 15
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 15
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 15
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 15
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 15
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 15
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 15
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 15
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 15
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 15
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 452 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 13 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 13
+    Warning (15610): No output dependent on input pin "KEY[2]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 13
+    Warning (15610): No output dependent on input pin "KEY[3]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 13
+    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 14
+    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 14
+    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 14
+    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 14
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 14
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 14
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 14
+    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 14
+    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 14
+    Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/Pedro Mahfuz/Documents/2023.1/DesComp/Atv8/aula8.vhd Line: 14
+Info (21057): Implemented 242 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 15 input pins
+    Info (21059): Implemented 52 output pins
+    Info (21061): Implemented 175 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 35 warnings
+    Info: Peak virtual memory: 4853 megabytes
+    Info: Processing ended: Mon Apr 17 17:33:03 2023
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:18
+
+

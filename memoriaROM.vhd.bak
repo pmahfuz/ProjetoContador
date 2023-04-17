@@ -35,22 +35,18 @@ architecture assincrona of memoriaROM is
   begin
       -- Palavra de Controle = SelMUX, Habilita_A, Reset_A, Operacao_ULA
       -- Inicializa os endereços:
-        tmp(0)  := JSR & '0' & "00001110";  -- Desta posicao para baixo, é necessário acertar os valores
-        tmp(1)  := JMP & '0' & "00000101";
-        tmp(2)  := JEQ & '0' & "00001001";
-        tmp(3)  := NOP & '0' & "00000000";
-		  tmp(4)  := NOP & '0' & "00000000";
-        tmp(5)  := LDI & '0' & "00000101";
-        tmp(6)  := STA & '1' & "00000000";
-		  tmp(7)  := CEQ & '1' & "00000000";
-		  tmp(8)  := JMP & '0' & "00000010";
-        tmp(9)  := NOP & '0' & "00000000";
-        tmp(10)  := LDI & '0' & "00000100";
-        tmp(11) := CEQ & '1' & "00000000";
-        tmp(12) := JEQ & '0' & "00000011";
-		  tmp(13) := JMP & '0' & "00001101";
-		  tmp(14)  := NOP & '0' & "00000000";
-		  tmp(15)  := RET & '0' & "00000000";
+        tmp(0)   := LDI   & '0' & x"01";   
+        tmp(1)   := STA   & '0' & x"00";   
+        tmp(2)   := SOMA  & '0' & x"00";   
+		  tmp(3)   := STA   & '0' & x"01";   
+        tmp(4)   := LDA   & '0' & x"00";  
+        tmp(5)   := STA   & '1' & x"01";  
+		  tmp(6)   := STA   & '1' & x"02";   
+		  tmp(7)   := LDI   & '0' & x"55";
+		  tmp(8)   := STA   & '1' & x"00";
+		  tmp(9)   := LDI   & '0' & x"AA";
+		  tmp(10)  := STA   & '1' & x"00";
+		  tmp(11)  := JMP   & '0' & x"0B";  
         return tmp;
     end initMemory;
 
