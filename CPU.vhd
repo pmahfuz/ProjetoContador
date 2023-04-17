@@ -42,8 +42,6 @@ architecture arquitetura of CPU is
   signal Reset_A : std_logic;
   signal Operacao_ULA : std_logic_vector (1 downto 0);
   signal opcode_entrada : std_logic_vector(12 downto 0);
-  signal habLeituraMEM : std_logic;
-  signal habEscritaMEM : std_logic;
   signal jmp : std_logic;
   signal jeq : std_logic;
   signal FlagZ : std_logic;
@@ -117,22 +115,14 @@ selMUX <= Sinais_Controle(6);
 Habilita_A <= Sinais_Controle(5);
 Operacao_ULA <= Sinais_Controle(4 downto 3);
 HabFlagZ <= Sinais_Controle(2);
-habLeituraMEM <= Sinais_Controle(1);
-habEscritaMEM<= Sinais_Controle(0);
 
--- I/O
---chavesY_MUX_A <= SW(3 downto 0);
---chavesX_ULA_B <= SW(9 downto 6);
-
----- A ligacao dos LEDs:
---LEDR (9) <= SelMUX;
---LEDR (8) <= Habilita_A;
---LEDR (7) <= Reset_A;
---LEDR (6) <= Operacao_ULA;
---LEDR (5) <= '0';    -- Apagado.
---LEDR (4) <= '0';    -- Apagado.
---LEDR (3 downto 0) <= REG1_ULA_A;
 
 opcode_entrada	<= ROMdado;
+DataAddress <= opcode_entrada(8 downto 0);
+RAMRd <= Sinais_Controle(1);
+RAMWr <= Sinais_Controle(0);
+ROMend <= Endereco;
 chavesY_MUX_A <= RAMDL; 
+RAMDE <= REG1_ULA_A;
+
 end architecture;

@@ -20,7 +20,6 @@ end entity;
 architecture arquitetura of Aula7 is
 
 -- Faltam alguns sinais:
-  signal ROMin : std_logic_vector (8 downto 0);
   signal ROMout : std_logic_vector(12 downto 0);
   signal RAMWr : std_logic;
   signal RAMRd : std_logic;
@@ -51,10 +50,10 @@ detectorSub0: work.edgeDetector(bordaSubida)
 end generate;
 
 ROM1 : entity work.memoriaROM   generic map (dataWidth => 13, addrWidth => 9)
-          port map (Endereco => ROMin, Dado => ROMout);
+          port map (Endereco => ROM_end, Dado => ROMout);
 			 
 DECODER3x8 : entity work.decoder3x8
-          port map (entrada => DataAddress(7 downto 5), saida => Decout);
+          port map (entrada => DataAddress(8 downto 6), saida => Decout);
 			 
 DECODER3x82 : entity work.decoder3x8
           port map (entrada => DataAddress(2 downto 0), saida => Decout2);
