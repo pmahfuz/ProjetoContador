@@ -180,10 +180,10 @@ FFKEY1 : entity work.flipflop
 			 port map (DIN => '1', DOUT => FFK1_out, ENABLE => '1', CLK => FFK1_clk, RST=> LimpaLeitura);
 			 
 KEY0_DETEC: work.edgeDetector(bordaSubida)
-        port map (clk => CLOCK_50, entrada => KEY(0), saida => FFK0_clk);
+        port map (clk => CLOCK_50, entrada => not (KEY(0)), saida => FFK0_clk);
 		  
 KEY1_DETEC: work.edgeDetector(bordaSubida)
-        port map (clk => CLOCK_50, entrada => KEY(1), saida => FFK1_clk);
+        port map (clk => CLOCK_50, entrada => not (KEY(1)), saida => FFK1_clk);
 
 -- I/O
 --chavesY_MUX_A <= SW(3 downto 0);
