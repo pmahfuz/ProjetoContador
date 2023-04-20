@@ -1,0 +1,35 @@
+STA @511  	    # Limpa KEY0
+LDI $0          # Carrega 0 no acumulador
+STA @13         # salva 0 no MEM[13]
+LDI $10         # Carrega 10
+STA @14         # salva 10 no MEM[14]
+Inicio:
+LDA @352        # Armazena o valor lido no KEY0 (ler KEY0)
+ANDI $1         # Utiliza mascara para limpar o valor lido do botao
+CEQ @13  	    # CEQ compara o valor de MEM[13] (zero) com o valor do KEY0
+JEQ @Pula1  	# JEQ para PULA 1 (temp 20)
+JSR @Incrementa # JSR para INCREMENTA (temp 32)
+Pula1:
+JSR @Display 	# JSR para DISPLAY (tmp 50)
+JMP @Inicio  	# JMP para INCIO
+Incrementa:
+STA @511  	    # Limpa KEY0
+LDA @0  	    # Carrega valor da unidade
+INC  	        # Incremneta o valor em 1
+CEQ @14         # Compara o incremento com 10
+JEQ @Dezena     # Pula para Dezena tmp(40)
+STA @0  	    # Salva o valor da unidade
+RET  	        # Retorno pela unidade
+Dezena:
+LDI $0  	    # carrega 0
+STA @0          # Limpa unidade
+LDA @1          # carrega dezena
+INC             # incrementa valor dezena
+STA @1          # salva na dezena
+RET  	        # Retorno pela dezena
+Display:
+LDA @0  	    # Carrega valor da unidade
+STA @288  	    # Escrevendo no display HEX0
+LDA @1  	    # Carrega valor da dezena
+STA @289  	    # Escrevendo no display HEX1
+RET             # Retorna subrotina

@@ -82,6 +82,8 @@ mne =	{
        "CEQ":   "1000",
        "JSR":   "1001",
        "RET":   "1010",
+       "ANDI":  "1011",
+       "INC":   "1100",
 }
 
 #Converte o valor após o caractere arroba '@'
@@ -180,7 +182,7 @@ with open(saida, "w") as f:  #Abre o destino BIN
                 instrucaoLine = instrucaoLine + '0'*9 #Acrescenta o valor x"00". Ex(RET): x"A" x"00"
                 
             
-            line = 'tmp(' + str(cont) + ') := x"' + instrucaoLine + '";\t-- ' + comentarioLine + '\n'  #Formata para o arquivo BIN
+            line = 'tmp(' + str(cont) + ') := "' + instrucaoLine + '";\t-- ' + comentarioLine + '\n'  #Formata para o arquivo BIN
                                                                                                        #Entrada => 1. JSR @14 #comentario1
                                                                                                        #Saída =>   1. tmp(0) := x"90E";	-- JSR @14 	#comentario1
                                         
