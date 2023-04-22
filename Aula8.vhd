@@ -6,15 +6,15 @@ entity Aula8 is
   -- Total de bits das entradas e saidas
   generic ( larguraDados : natural := 8;
         larguraEnderecos : natural := 3;
-        simulacao : boolean := FALSE -- para gravar na placa, altere de TRUE para FALSE
+        simulacao : boolean := TRUE -- para gravar na placa, altere de TRUE para FALSE
   );
   port   (
     CLOCK_50 : in std_logic;
     KEY: in std_logic_vector(3 downto 0);
-	 FPGA_RESET: in std_logic;
     SW: in std_logic_vector(9 downto 0);
     LEDR  : out std_logic_vector(9 downto 0);
-	 HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : out std_logic_vector(6 downto 0)
+	 FPGA_RESET_N : in std_logic;
+	 HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : out std_logic_vector(6 downto 0)	
   );
 end entity;
 
@@ -41,11 +41,16 @@ architecture arquitetura of Aula8 is
   signal R0Hab, R1Hab, R2Hab, R3Hab, R4Hab, R5Hab: std_logic;
   signal R0out, R1out, R2out, R3out, R4out, R5out : std_logic_vector(3 downto 0);
   signal H0out, H1out, H2out, H3out, H4out, H5out : std_logic_vector(6 downto 0);
-  signal HabSW0to7, HabSW8, HabSW9: std_logic;
-  signal HabKey0, HabKey1, HabKey2, HabKey3: std_logic;
-  signal HabFPGA_Reset: std_logic;
-  
-  
+  signal HabSW07, HabSW8, HabSW9, HabKey0, HabKey1, HabKey2, HabKey3, HabFPGA_Reset: std_logic;
+  signal LimpaLeitura0 : std_logic;
+  signal LimpaLeitura1 : std_logic;
+  signal LimpaLeitura2 : std_logic;
+  signal FFK0_clk : std_logic;
+  signal FFK1_clk : std_logic;
+  signal FFRESET_clk : std_logic;
+  signal FFK0_out : std_logic;
+  signal FFK1_out : std_logic;
+  signal FFRESET_out : std_logic;
   
 begin
 
@@ -53,7 +58,7 @@ begin
 
 -- Para simular, fica mais simples tirar o edgeDetector
 gravar:  if simulacao generate
-CLK <= KEY(0);
+CLK <= Clock_50;
 else generate
 detectorSub0: work.edgeDetector(bordaSubida)
         port map (clk => CLOCK_50, entrada => (not KEY(0)), saida => CLK);
@@ -148,7 +153,47 @@ CHEX5 :  entity work.conversorHex7Seg
                  overFlow =>  '0',
                  saida7seg => H5out);
 					  
-	
+TRI0 : entity work.buffer_3_state_8portas
+        port map(entrada => SW(7 downto 0), habilita =>  HabSW07, saida => RAMDL);					  
+					  
+TRI1 : entity work.buffer_3_state_8portas
+        port map(entrada => "0000000" & SW(8), habilita =>  HabSW8, saida => RAMDL);	
+		  
+TRI2 : entity work.buffer_3_state_8portas
+        port map(entrada => "0000000" & SW(9), habilita =>  HabSW9, saida => RAMDL);	
+		  
+TRI3 : entity work.buffer_3_state_8portas
+        port map(entrada => "0000000" & FFK0_out, habilita =>  HabKey0, saida => RAMDL);	
+		  
+TRI4 : entity work.buffer_3_state_8portas
+        port map(entrada => "0000000" & FFK1_out, habilita =>  HabKey1, saida => RAMDL);	
+		  
+TRI5 : entity work.buffer_3_state_8portas
+        port map(entrada => "0000000" & KEY(2), habilita =>  HabKey2, saida => RAMDL);	
+		  
+TRI6 : entity work.buffer_3_state_8portas
+        port map(entrada => "0000000" & KEY(3), habilita =>  HabKey3, saida => RAMDL);	
+		  
+TRI7 : entity work.buffer_3_state_8portas
+        port map(entrada => "0000000" & FPGA_RESET_N, habilita =>  HabFPGA_Reset, saida => RAMDL);
+		  
+FFKEY0 : entity work.flipflop  
+			 port map (DIN => '1', DOUT => FFK0_out, ENABLE => '1', CLK => FFK0_clk, RST=> LimpaLeitura0);
+			 
+FFKEY1 : entity work.flipflop  
+			 port map (DIN => '1', DOUT => FFK1_out, ENABLE => '1', CLK => FFK1_clk, RST=> LimpaLeitura1);
+			
+FFRESET : entity work.flipflop  
+			 port map (DIN => '1', DOUT => FFRESET_out, ENABLE => '1', CLK => FFRESET_clk, RST=> LimpaLeitura2);
+			 
+KEY0_DETEC: work.edgeDetector(bordaSubida)
+        port map (clk => CLOCK_50, entrada => not (KEY(0)), saida => FFK0_clk);
+		  
+KEY1_DETEC: work.edgeDetector(bordaSubida)
+        port map (clk => CLOCK_50, entrada => not (KEY(1)), saida => FFK1_clk);
+
+RESET_DETEC: work.edgeDetector(bordaSubida)
+        port map (clk => CLOCK_50, entrada => not (FPGA_RESET_N), saida => FFRESET_clk);
 
 -- I/O
 --chavesY_MUX_A <= SW(3 downto 0);
@@ -177,6 +222,22 @@ R2Hab <= (RAMWr and Decout(4) and DataAddress(5) and Decout2(2));
 R3Hab <= (RAMWr and Decout(4) and DataAddress(5) and Decout2(3));
 R4Hab <= (RAMWr and Decout(4) and DataAddress(5) and Decout2(4));
 R5Hab <= (RAMWr and Decout(4) and DataAddress(5) and Decout2(5));
+
+HabSW07 <= (RAMRd and not(DataAddress(5)) and Decout2(0)	and Decout(5));
+HabSW8 <= (RAMRd and not(DataAddress(5)) and Decout2(1)	and Decout(5));
+HabSW9 <= (RAMRd and not(DataAddress(5)) and Decout2(2)	and Decout(5));
+HabKey0 <= (RAMRd and DataAddress(5) and Decout2(0)	and Decout(5));
+HabKey1 <= (RAMRd and DataAddress(5) and Decout2(1)	and Decout(5));
+HabKey2 <= (RAMRd and DataAddress(5) and Decout2(2)	and Decout(5));
+HabKey3 <= (RAMRd and DataAddress(5) and Decout2(3)	and Decout(5));
+HabFPGA_Reset <= (RAMRd and DataAddress(5) and Decout2(4)	and Decout(5));
+
+LimpaLeitura0 <= (DataAddress(0) and DataAddress(1) and DataAddress(2) and DataAddress(3) and DataAddress(4)
+					  and DataAddress(5) and DataAddress(6) and DataAddress(7) and DataAddress(8) and RAMWr);
+LimpaLeitura1 <= (not(DataAddress(0)) and DataAddress(1) and DataAddress(2) and DataAddress(3) and DataAddress(4)
+					  and DataAddress(5) and DataAddress(6) and DataAddress(7) and DataAddress(8) and RAMWr);
+LimpaLeitura2 <= (DataAddress(0) and not(DataAddress(1)) and DataAddress(2) and DataAddress(3) and DataAddress(4)
+					  and DataAddress(5) and DataAddress(6) and DataAddress(7) and DataAddress(8) and RAMWr);
 
 
 end architecture;

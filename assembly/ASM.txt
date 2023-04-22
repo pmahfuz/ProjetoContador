@@ -1,3 +1,4 @@
+Reset:
 LDI $0          # Carrega o acumulador com o valor 0
 STA @288        # Armazena o valor do acumulador em HEX0
 STA @289        # Armazena o valor do acumulador em HEX1
@@ -14,20 +15,86 @@ STA @2			# Armazena o valor do acumulador em MEM[2] (centenas)
 STA @3			# Armazena o valor do acumulador em MEM[3] (unidades de milhar)
 STA @4			# Armazena o valor do acumulador em MEM[4] (dezenas de milhar)
 STA @5			# Armazena o valor do acumulador em MEM[5] (centenas de milhar)
-LDI $1  	  
-STA @15
+STA @6			# Armazena o valor do acumulador em MEM[6] (limite unidade)
+STA @7			# Armazena o valor do acumulador em MEM[7] (limite dezena)
+STA @8			# Armazena o valor do acumulador em MEM[8] (limite centena)
+STA @9			# Armazena o valor do acumulador em MEM[9] (limite unidade de milhar)
+STA @10			# Armazena o valor do acumulador em MEM[10] (limite dezena de milhar)
+STA @11			# Armazena o valor do acumulador em MEM[11] (limite centena de milhar)
+STA @256        # Limpa LEDR(0-7)
+STA @257        # Limpa LEDR(8)
+STA @258        # Limpa LEDR(9)
+LDI $1  	    # Carrega 1 no acumulador
+STA @15         # Salva acumulador no 15
 STA @511  	    # Limpa KEY0
+STA @510        # limpa KEY1
+STA @509        # limpa Reset
 LDI $0          # Carrega 0 no acumulador
 STA @13         # salva 0 no MEM[13]
 LDI $10         # Carrega 10
 STA @14         # salva 10 no MEM[14]
+Limite:
+LDA @320        # Le SW(0 - 7)
+STA @288        # Escreve no HEX0
+LDA @353        # Le KEY1
+CEQ @13         # Compara o valor de MEM[13] (zero) com o valor do KEY1
+JEQ @Limite     # Pula para Limite
+STA @510        # Limpa KEY1
+LDA @320        # Le SW(0 - 7)
+STA @6          # Salva o valor do limite da unidade
+LimDez:
+LDA @320        # Le SW(0 - 7)
+STA @289        # Escreve no HEX1
+LDA @353        # Le KEY1
+CEQ @13         # Compara o valor de MEM[13] (zero) com o valor do KEY1
+JEQ @LimDez     # Pula para LimDez
+STA @510        # Limpa KEY1
+LDA @320        # Le SW(0 - 7)
+STA @7          # Salva o valor do limite da dezena
+LimCen:
+LDA @320        # Le SW(0 - 7)
+STA @290        # Escreve no HEX2
+LDA @353        # Le KEY1
+CEQ @13         # Compara o valor de MEM[13] (zero) com o valor do KEY1
+JEQ @LimCen     # Pula para LimCen
+STA @510        # Limpa KEY1
+LDA @320        # Le SW(0 - 7)
+STA @8          # Salva o valor do limite da centena
+LimUnidMil:
+LDA @320        # Le SW(0 - 7)
+STA @291        # Escreve no HEX3
+LDA @353        # Le KEY1
+CEQ @13         # Compara o valor de MEM[13] (zero) com o valor do KEY1
+JEQ @LimUnidMil # Pula para LimUnidMil
+STA @510        # Limpa KEY1
+LDA @320        # Le SW(0 - 7)
+STA @9          # Salva o valor do limite da unidade de milhar
+LimDezMil:
+LDA @320        # Le SW(0 - 7)
+STA @292        # Escreve no HEX4
+LDA @353        # Le KEY1
+CEQ @13         # Compara o valor de MEM[13] (zero) com o valor do KEY1
+JEQ @LimDezMil  # Pula para LimDezMil
+STA @510        # Limpa KEY1
+LDA @320        # Le SW(0 - 7)
+STA @10         # Salva o valor do limite da dezena de milhar
+LimCenMil:
+LDA @320        # Le SW(0 - 7)
+STA @293        # Escreve no HEX5
+LDA @353        # Le KEY1
+CEQ @13         # Compara o valor de MEM[13] (zero) com o valor do KEY1
+JEQ @LimCenMil  # Pula para LimCenMil
+STA @510        # Limpa KEY1
+LDA @320        # Le SW(0 - 7)
+STA @11         # Salva o valor do limite da centena de milhar
 Inicio:
 LDA @352        # Armazena o valor lido no KEY0 (ler KEY0)
 CEQ @13  	    # CEQ compara o valor de MEM[13] (zero) com o valor do KEY0
 JEQ @Pula1  	# JEQ para PULA 1 (temp 20)
 JSR @Incrementa # JSR para INCREMENTA (temp 32)
 Pula1:
-JSR @Display 	# JSR para DISPLAY (tmp 50)
+JSR @Display 	# JSR para DISPLAY 
+JSR @Compara    # JSR para COMPARA 
 JMP @Inicio  	# JMP para INCIO
 Incrementa:
 STA @511  	    # Limpa KEY0
@@ -48,48 +115,89 @@ STA @1          # salva na dezena
 RET  	        # Retorno pela dezena
 Centena:
 LDI $0          # carrega 0
-STA @289          # limpa dezena 
+STA @1          # limpa dezena 
 LDA @2          # carrega centena 
 SOMA @15        # soma 1
 CEQ @14         # compara o incremento com 10
-JEQ @Milhar     # pula para milhar
-STA @290          # salva na centena
+JEQ @UnidadeMilhar     # pula para unidade milhar
+STA @2          # salva na centena
 RET             # retorno pela centena
-Milhar:
+UnidadeMilhar:
 LDI $0          # carrega 0
-STA @290          # limpa centena 
-LDA @3          # carrega milhar 
+STA @2        # limpa centena 
+LDA @3          # carrega unidade milhar 
 SOMA @15        # soma 1
 CEQ @14         # compara o incremento com 10
 JEQ @DezenaMilhar    # pula para dezena de milhar 
-STA @291          # salva no milhar
-RET             # retorno pelo milhar
+STA @3          # salva no unidade milhar
+RET             # retorno pelo unidade milhar
 DezenaMilhar:
 LDI $0          # carrega 0
-STA @291          # limpa milhar 
+STA @3          # limpa unidade milhar 
 LDA @4          # carrega dezena de milhar 
 SOMA @15        # soma 1
 CEQ @14        # compara o incremento com 10
 JEQ @CentenaMilhar   # pula para centena de milhar 
-STA @292          # salva na dezena de milhar 
+STA @4          # salva na dezena de milhar 
 RET             # retorno pela dezena de milhar
 CentenaMilhar:
 LDI $0          # carrega 0
-STA @292          # limpa dezena de milhar 
+STA @4          # limpa dezena de milhar 
 LDA @5          # carrega centena de milhar 
 SOMA @15        # soma 1
 CEQ @14         # compara o incremento com 10
 JEQ @Estouro    # pula para estouro da contagem
-STA @293          # salva na centena de milhar 
+STA @5          # salva na centena de milhar 
 RET             # retorno pela centena de milhar 
 Estouro:
 LDI $255        # carrega 255 no acumulador
 STA @256        # armazena 255 em LEDR0 até LEDR7
 FIM:
+LDA @356        # carrega o valor do RESET
+CEQ @13         # compara com o valor de MEM[13] (zero)
+JEQ @Reset      # pula para o começo
 JMP @FIM        # pula para o fim
+Compara:
+LDA @0          # carrega unidade
+CEQ @6          # compara com o limite da unidade
+JEQ @ComparaDez # pula para compara dezena
+RET             # retorna
+ComparaDez:
+LDA @1          # carrega dezena
+CEQ @7          # compara com o limite da dezena
+JEQ @ComparaCen # pula para compara centena
+RET             # retorna
+ComparaCen:
+LDA @2          # carrega centena
+CEQ @8          # compara com o limite da centena
+JEQ @ComparaUnidMilhar # pula para compara unidade de milhar
+RET             # retorna
+ComparaUnidMilhar:
+LDA @3          # carrega unidade de milhar
+CEQ @9          # compara com o limite da unidade de milhar
+JEQ @ComparaDezMilhar # pula para compara dezena de milhar
+RET             # retorna
+ComparaDezMilhar:
+LDA @4          # carrega dezena de milhar
+CEQ @10         # compara com o limite da dezena de milhar
+JEQ @ComparaCenMilhar # pula para compara centena de milhar
+RET             # retorna
+ComparaCenMilhar:
+LDA @5          # carrega centena de milhar
+CEQ @11         # compara com o limite da centena de milhar
+JEQ @Estouro    # pula para o estouro
+RET             # retorna
 Display:
 LDA @0  	    # Carrega valor da unidade
 STA @288  	    # Escrevendo no display HEX0
 LDA @1  	    # Carrega valor da dezena
 STA @289  	    # Escrevendo no display HEX1
+LDA @2  	    # Carrega valor da centena
+STA @290  	    # Escrevendo no display HEX2
+LDA @3  	    # Carrega valor da unidade milhar
+STA @291  	    # Escrevendo no display HEX3
+LDA @4  	    # Carrega valor da dezena milhar
+STA @292  	    # Escrevendo no display HEX4
+LDA @5  	    # Carrega valor da centena milhar
+STA @293  	    # Escrevendo no display HEX5
 RET             # Retorna subrotina

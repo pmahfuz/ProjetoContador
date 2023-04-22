@@ -37,9 +37,9 @@ architecture comportamento of decoderInstru is
   begin
   
   Hab_WR <= '1' when (opcode = STA) else '0';
-  Hab_RD <= '1' when (opcode = LDA or opcode = SOMA or opcode = SUB or opcode = CEQ) else '0';
+  Hab_RD <= '1' when (opcode = LDA or opcode = SOMA or opcode = SUB) else '0';
   habFlag <= '1' when (opcode = CEQ) else '0';
-  Op <= "01" when (opcode = SOMA) else "00" when (opcode = SUB or opcode = CEQ) else "10" when (opcode = LDA or opcode = LDI) else "00";
+  Op <= "01" when (opcode = SOMA) else "00" when (opcode = SUB) else "10" when (opcode = LDA or opcode = LDI) else "00";
   Hab_A <= '1' when (opcode = LDA or opcode = SOMA or opcode = SUB or opcode = LDI) else '0';
   SelMux <= '1' when (opcode = LDI) else '0';
   Hab_JEQ <= '1' when (opcode = JEQ) else '0';
